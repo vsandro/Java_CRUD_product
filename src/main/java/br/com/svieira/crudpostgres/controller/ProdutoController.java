@@ -2,6 +2,7 @@ package br.com.svieira.crudpostgres.controller;
 
 import br.com.svieira.crudpostgres.entity.Produto;
 import br.com.svieira.crudpostgres.repository.Produtos;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -24,7 +25,7 @@ public class ProdutoController {
 
     @GetMapping("{id}")
     public Produto getById(@PathVariable Integer id) {
-        return repository.findById(id).orElseThrow( () -> new ResponseStatusException(NOT_FOUND, "Produto não encontrado"));
+        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Produto não encontrado"));
     }
 
     @PutMapping("{id}")
@@ -34,7 +35,7 @@ public class ProdutoController {
             produto.setId( p.getId());
             repository.save(produto);
             return produto;
-        }).orElseThrow( () -> new ResponseStatusException(NOT_FOUND, "Produto não encontrado"));
+        }).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Produto não encontrado"));
     }
 
     @DeleteMapping("{id}")
@@ -43,7 +44,7 @@ public class ProdutoController {
         repository.findById(id).map( p -> {
             repository.delete(p);
             return Void.TYPE;
-        }).orElseThrow( () -> new ResponseStatusException(NOT_FOUND, "Produto não encontrado"));
+        }).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Produto não encontrado"));
     }
 
     @GetMapping
